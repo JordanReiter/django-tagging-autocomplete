@@ -13,9 +13,9 @@ class TagAutocomplete(Input):
 			<script type="text/javascript">
 			$(document).ready(function (){
 				function split(term) {
-					term = term.replace(/\s+/,'\n');
+					term = term.replace(/\s+/,'\\n');
 					term = term.trim();
-					return term.split('\n')
+					return term.split('\\n')
 				}
 				function extractLast(term) {
 					return split(term).pop();

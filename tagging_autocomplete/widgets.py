@@ -13,8 +13,7 @@ class TagAutocomplete(Input):
 			<script type="text/javascript">
 			$(document).ready(function (){
 				function split(term) {
-					term = term.replace(/,\s*(\S+)\s*(,\s*|$)/g,'\n$1\n');
-					term = term.replace(/>[,\s]*/g,'>\n');
+					term = term.replace(/\s+/,'\n');
 					term = term.trim();
 					return term.split('\n')
 				}

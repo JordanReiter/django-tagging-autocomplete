@@ -9,7 +9,7 @@ class TagAutocomplete(Input):
 	def render(self, name, value, attrs=None):
 		list_view = reverse('tagging_autocomplete-list')
 		html = super(TagAutocomplete, self).render(name, value, attrs)
-		js = u"""
+		js = """
 			<script type="text/javascript">
 			$(document).ready(function (){
 				function split(term) {

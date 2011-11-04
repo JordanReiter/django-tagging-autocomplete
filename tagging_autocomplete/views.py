@@ -5,9 +5,5 @@ from django.utils import simplejson as json
 from tagging.models import Tag
 
 def list_tags(request):
-	try:
-		tags = [t['name'] for t in Tag.objects.filter(name__istartswith=request.GET['q']).values('name').distinct()]
-	except MultiValueDictKeyError:
-		tags = []
-	
-	return HttpResponse(json.dumps(tags), mimetype='application/json')
+        tags = serializers.serialize('json', Tag.objects.filter(name__istartswith=request.GET['q']), fields=('name','id'))
+	return HttpResponse(tags, mimetype='application/json')

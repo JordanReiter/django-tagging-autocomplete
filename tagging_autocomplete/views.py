@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.core import serializers
+from django.utils import simplejson as json
+
 from tagging.models import Tag
 
 def list_tags(request):
@@ -8,4 +10,4 @@ def list_tags(request):
 	except MultiValueDictKeyError:
 		pass
 	
-	return HttpResponse('\n'.join(tags), mimetype='text/plain')
+	return HttpResponse(json.dumps(tags), mimetype='application/json')

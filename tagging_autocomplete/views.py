@@ -6,7 +6,7 @@ from tagging.models import Tag
 
 def list_tags(request):
 	try:
-		tags = Tag.objects.filter(name__istartswith=request.GET['q']).values_list('name', flat=True)
+		tags = [t.name for t in Tag.objects.filter(name__istartswith=request.GET['q']).values('name').distinct()]
 	except MultiValueDictKeyError:
 		tags = []
 	

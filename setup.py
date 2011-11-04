@@ -7,9 +7,9 @@ setup(
     author_email = "ludwik@gmail.com, fletcher@liftinteractive.com",
     description = "A fork of dimasbka's django-tagging-autocomplete app",
     license = "GNU",
-    url = "http://github.com/l1f7/django-tagging-autocomplete",
+    url = "https://github.com/JordanReiter/django-tagging-autocomplete",
     packages = [
-        "django-tagging-autocomplete"
+        "tagging_autocomplete"
     ],
     classifiers = [
         "Environment :: Web Environment",

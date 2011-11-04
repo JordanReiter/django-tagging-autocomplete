@@ -4,5 +4,5 @@ from django.utils import simplejson as json
 from tagging.models import Tag
 
 def list_tags(request):
-        tags = json.dumps(list(Tag.objects.filter(name__istartswith=request.GET['q']).values('name').distinct()))
+        tags = json.dumps(list(Tag.objects.filter(name__istartswith=request.GET['q']).values('name','id')))
 	return HttpResponse(tags, mimetype='application/json')

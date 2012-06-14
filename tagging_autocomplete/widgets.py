@@ -64,3 +64,28 @@ class TagAutocomplete(Input):
 			'%s/lib/jquery.js' % js_base_url,
 			'%s/jquery.autocomplete.js' % js_base_url,
 			)
+
+class TagTokenInput(Input):
+	input_type = 'text'
+	
+	def render(self, name, value, attrs=None):
+		list_view = reverse('tagging_autocomplete-list')
+		html = super(TagTokenInput, self).render(name, value, attrs)
+		js = """
+			<script type="text/javascript">
+			$(document).ready(function (){
+				$('#%(id)s').tokenInput("%(lookup)s", {
+					tokenValue: "name",
+					allowNewItems: true
+				})
+			});
+			</script>
+		""" % { 'id':attrs['id'], 'lookup': list_view}
+		return mark_safe("\n".join([html, js]))
+	
+	class Media:
+		js_base_url = getattr(settings, 'TAGGING_AUTOCOMPLETE_JS_BASE_URL','%s/jquery-autocomplete' % settings.MEDIA_URL)
+		css = {
+		    'all': ('css/token-input.css',)
+		}
+		js = ('js/jquery.tokeninput.js',)
